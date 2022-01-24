@@ -17,9 +17,6 @@ public class RobotService {
     private final RobotRepository robotRepository;
     @Autowired
     private Table table;
-    private Facing facing;
-    private int x;
-    private int y;
     private boolean placed;
 
 
@@ -34,10 +31,7 @@ public class RobotService {
     public void place(int newX, int newY, Facing f) throws APIException {
         if (table.isPositionValid(newX, newY)) {
             placed = true;
-            x = newX;
-            y = newY;
-            facing = f;
-            robotRepository.save(new Robot(x, y, facing));
+            robotRepository.save(new Robot(newX, newY, f));
         } else {
             throw new APIException("X And Y coordinates must be between " + 0 + " and " + 4);
 
@@ -113,36 +107,13 @@ public class RobotService {
     }
 
     /**
-     * Rotates the robot to the right
-     */
-    public String right() throws APIException {
-        if (!placed) {
-            throw new APIException("Robot is not placed");
-        }
-        switch (facing) {
-            case NORTH:
-                facing = Facing.EAST;
-                break;
-            case SOUTH:
-                facing = Facing.WEST;
-                break;
-            case EAST:
-                facing = Facing.SOUTH;
-                break;
-            case WEST:
-                facing = Facing.NORTH;
-                break;
-        }
-        return "Facing " + facing;
-    }
-    /**
      * Report the current cords and the facing
      */
     public String report() throws APIException {
         if (!placed) {
             throw new APIException("Robot is not placed");
         }
-        return x + "," + y + "," + facing;
+        return robotRepository.findAll().toString();
     }
 }
 
