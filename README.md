@@ -79,6 +79,8 @@ Output: [Robot(robotId=1, xCoord=3, yCoord=3, facing=North)]
 - Add more test coverage for every command
 - JPA query history implimentation
 - More Refactoring
+- Exception Handler
+
 
 
 
