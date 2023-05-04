@@ -14,7 +14,7 @@ Commands to be executed:
 This is maven based project written using the following:
 
 - JDK17
-- Mavaen 4.0.0
+- Maven 4.0.0
 - Spring
 - Spring Data JPA 2.6.0
 - Spring Boot 2.6.2
